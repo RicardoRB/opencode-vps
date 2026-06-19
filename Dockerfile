@@ -22,7 +22,8 @@ RUN mkdir -p -m 755 /etc/apt/keyrings && \
     rm -rf /var/lib/apt/lists/*
 
 # OpenCode
-RUN bun install -g opencode-ai@latest
+ARG OPENCODE_VERSION=latest
+RUN bun install -g "opencode-ai@${OPENCODE_VERSION}"
 
 WORKDIR /workspace
 

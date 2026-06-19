@@ -2,7 +2,10 @@ version: '3.9'
 
 services:
   opencode:
-    build: .
+    build:
+      context: .
+      args:
+        OPENCODE_VERSION: ${OPENCODE_VERSION:-latest}
     ports:
       - "4096:4096"
     volumes:

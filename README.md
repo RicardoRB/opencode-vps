@@ -55,6 +55,7 @@ http://localhost:4096
 ## Environment Variables
 
 - `GITHUB_TOKEN` - Optional GitHub personal access token for GitHub CLI or OpenCode operations that require authentication.
+- `OPENCODE_VERSION` - Optional OpenCode AI version to install at build time. Defaults to `latest` when not defined.
 
 ## Notes
 
