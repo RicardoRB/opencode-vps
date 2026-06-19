@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  opencode:
+    build: .
+    ports:
+      - "4096:4096"
+    volumes:
+      - vps-opencode-data:/root/.config/opencode
+      - vps-opencode-projects:/workspace
+    environment:
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+    restart: unless-stopped
+
+volumes:
+  vps-opencode-data:
+    driver: local
+  vps-opencode-projects:
+    driver: local
