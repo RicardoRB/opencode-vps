@@ -1,4 +1,7 @@
-FROM oven/bun:1
+FROM node:20-slim
+
+ENV PNPM_HOME=/root/.local/share/pnpm
+ENV PATH=$PNPM_HOME:$PATH
 
 # Dependencias base
 RUN apt-get update && apt-get install -y \
@@ -21,12 +24,12 @@ RUN mkdir -p -m 755 /etc/apt/keyrings && \
     apt-get install -y gh && \
     rm -rf /var/lib/apt/lists/*
 
-# OpenCode
-ARG OPENCODE_VERSION=latest
-RUN bun install -g "opencode-ai@${OPENCODE_VERSION}"
-
 # Install pnpm globally
-RUN curl -fsSL https://get.pnpm.io/install.sh | sh -s -- -b /usr/local/bin
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+# OpenCode CLI and OpenAgent installer
+ARG OPENCODE_VERSION=latest
+RUN pnpm add -g "opencode-ai@${OPENCODE_VERSION}" oh-my-openagent
 
 WORKDIR /workspace
 
