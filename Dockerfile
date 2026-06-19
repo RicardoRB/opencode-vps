@@ -25,6 +25,9 @@ RUN mkdir -p -m 755 /etc/apt/keyrings && \
 ARG OPENCODE_VERSION=latest
 RUN bun install -g "opencode-ai@${OPENCODE_VERSION}"
 
+# Install pnpm globally
+RUN curl -fsSL https://get.pnpm.io/install.sh | sh -s -- -b /usr/local/bin
+
 WORKDIR /workspace
 
 COPY entrypoint.sh /entrypoint.sh
