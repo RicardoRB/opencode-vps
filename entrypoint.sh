@@ -23,3 +23,6 @@ fi
 if [ -n "$GITHUB_TOKEN" ]; then
     echo "$GITHUB_TOKEN" | gh auth login --with-token
 fi
+
+# IMPORTANTE: Ejecuta el CMD definido en el Dockerfile
+exec "$@"
