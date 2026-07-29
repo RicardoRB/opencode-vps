@@ -14,7 +14,6 @@ services:
     environment:
       - GITHUB_TOKEN=${GITHUB_TOKEN}
       - OPENCODE_SERVER_PASSWORD: ${OPENCODE_SERVER_PASSWORD}
-      - OPENCODE_SERVER_USERNAME: ${OPENCODE_SERVER_USERNAME}
     restart: unless-stopped
 
 volumes:
