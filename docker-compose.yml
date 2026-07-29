@@ -12,9 +12,9 @@ services:
       - vps-opencode-data:/root/.config/opencode
       - vps-opencode-projects:/workspace
     environment:
-      - GITHUB_TOKEN: ${GITHUB_TOKEN}
-      - OPENCODE_SERVER_PASSWORD: ${OPENCODE_SERVER_PASSWORD}
-      - OPENCODE_SERVER_USERNAME: ${OPENCODE_SERVER_PASSWORD}
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+      OPENCODE_SERVER_PASSWORD: ${OPENCODE_SERVER_PASSWORD}
+      OPENCODE_SERVER_USERNAME: ${OPENCODE_SERVER_PASSWORD}
     restart: unless-stopped
 
 volumes:
