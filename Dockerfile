@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install -y \
     gnupg \
     && rm -rf /var/lib/apt/lists/*
 
+
+RUN apt-get install unzip
+
 # GitHub CLI (instalación oficial)
 RUN mkdir -p -m 755 /etc/apt/keyrings && \
     wget -nv -O /etc/apt/keyrings/githubcli-archive-keyring.gpg \
