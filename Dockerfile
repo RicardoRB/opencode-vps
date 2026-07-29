@@ -1,9 +1,6 @@
-FROM node:20-slim
+FROM node:22-slim
 
-ENV PNPM_HOME=/root/.local/share/pnpm
-ENV PATH=$PNPM_HOME:$PATH
-
-# Dependencias base
+# # Dependencias base
 RUN apt-get update && apt-get install -y \
     curl \
     wget \
@@ -24,12 +21,9 @@ RUN mkdir -p -m 755 /etc/apt/keyrings && \
     apt-get install -y gh && \
     rm -rf /var/lib/apt/lists/*
 
-# Install pnpm globally
-RUN corepack enable && corepack prepare pnpm@latest --activate
-
-# OpenCode CLI and OpenAgent installer
+# 1. Install OpenCode CLI globally usando npm (evita conflictos de workspace de pnpm)
 ARG OPENCODE_VERSION=latest
-RUN pnpm add -g "opencode-ai@${OPENCODE_VERSION}" oh-my-openagent
+RUN npm install -g "opencode-ai@${OPENCODE_VERSION}"
 
 WORKDIR /workspace
 
@@ -38,4 +32,4 @@ RUN chmod +x /entrypoint.sh
 
 EXPOSE 4096
 
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["opencode", "web", "--hostname", "0.0.0.0", "--port", "4096"]
