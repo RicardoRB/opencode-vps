@@ -8,14 +8,9 @@ mkdir -p "$CONFIG_DIR"
 # Instalar OMO únicamente la primera vez
 if [ ! -f "$CONFIG_DIR/.omo-installed" ]; then
 
-  npx lazycodex-ai install \
+  npx oh-my-openagent install \
     --no-tui \
-    --platform=opencode \
-    --claude=no \
-    --openai=yes \
-    --gemini=no \
-    --copilot=no \
-    --skip-auth
+    --platform=opencode
 
   touch "$CONFIG_DIR/.omo-installed"
 fi
