@@ -1,6 +1,6 @@
 FROM node:22-slim
 
-# # Dependencias base
+# Dependencias base
 RUN apt-get update && apt-get install -y \
     curl \
     wget \
@@ -8,9 +8,10 @@ RUN apt-get update && apt-get install -y \
     jq \
     ca-certificates \
     gnupg \
+    unzip \
     && rm -rf /var/lib/apt/lists/*
 
-# GitHub CLI (instalación oficial)
+# GitHub CLI
 RUN mkdir -p -m 755 /etc/apt/keyrings && \
     wget -nv -O /etc/apt/keyrings/githubcli-archive-keyring.gpg \
       https://cli.github.com/packages/githubcli-archive-keyring.gpg && \
@@ -21,15 +22,24 @@ RUN mkdir -p -m 755 /etc/apt/keyrings && \
     apt-get install -y gh && \
     rm -rf /var/lib/apt/lists/*
 
-# 1. Install OpenCode CLI globally usando npm (evita conflictos de workspace de pnpm)
+# Bun
+RUN curl -fsSL https://bun.sh/install | bash
+
+ENV PATH="/root/.bun/bin:${PATH}"
+
+# OpenCode
 ARG OPENCODE_VERSION=latest
 RUN npm install -g "opencode-ai@${OPENCODE_VERSION}"
 
+# Workspace
 WORKDIR /workspace
 
+# Entrypoint
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 EXPOSE 4096
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["opencode", "web", "--hostname", "0.0.0.0", "--port", "4096"]
