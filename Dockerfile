@@ -42,4 +42,4 @@ EXPOSE 4096
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["opencode", "web", "--hostname", "0.0.0.0", "--port", "4096"]
+CMD ["opencode", "serve", "--hostname", "0.0.0.0", "--port", "4096"]
