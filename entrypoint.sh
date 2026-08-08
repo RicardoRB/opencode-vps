@@ -20,8 +20,4 @@ if [ ! -f "$CONFIG_DIR/.omo-installed" ]; then
     echo "Oh My OpenAgent installed successfully."
 fi
 
-if [ -n "${GITHUB_TOKEN:-}" ]; then
-    echo "$GITHUB_TOKEN" | gh auth login --with-token
-fi
-
 exec "$@"
