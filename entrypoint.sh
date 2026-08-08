@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -euxo pipefail
 
 CONFIG_DIR="/root/.config/opencode"
 
