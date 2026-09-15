@@ -11,6 +11,7 @@ services:
     volumes:
       - vps-opencode-data:/root/.config/opencode
       - vps-opencode-projects:/workspace
+      - vps-opencode-omo:/root/.omo
     environment:
       GITHUB_TOKEN: ${GITHUB_TOKEN}
       OPENCODE_SERVER_PASSWORD: ${OPENCODE_SERVER_PASSWORD}
@@ -24,9 +25,11 @@ services:
         reservations:
           cpus: "0.5"
           memory: 1G
-          
+
 volumes:
   vps-opencode-data:
     driver: local
   vps-opencode-projects:
+    driver: local
+  vps-opencode-omo:
     driver: local
