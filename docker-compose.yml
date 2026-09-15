@@ -12,6 +12,7 @@ services:
       - vps-opencode-data:/root/.config/opencode
       - vps-opencode-projects:/workspace
       - vps-opencode-omo:/root/.omo
+      - vps-opencode-state:/root/.local/share/opencode
     environment:
       GITHUB_TOKEN: ${GITHUB_TOKEN}
       OPENCODE_SERVER_PASSWORD: ${OPENCODE_SERVER_PASSWORD}
@@ -32,4 +33,6 @@ volumes:
   vps-opencode-projects:
     driver: local
   vps-opencode-omo:
+    driver: local
+  vps-opencode-state:
     driver: local
