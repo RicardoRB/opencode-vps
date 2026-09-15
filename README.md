@@ -60,7 +60,7 @@ http://localhost:4096
 ## Notes
 
 - The container installs `oh-my-openagent` only once per persisted configuration using a marker file at `/root/.config/opencode/.omo-installed`.
-- If you enable `GITHUB_TOKEN`, uncomment and configure the `gh auth login` section in `entrypoint.sh`.
+- If `GITHUB_TOKEN` is set, the entrypoint configures GitHub CLI as a git credential helper at container startup.
 
 ## Ports
 
