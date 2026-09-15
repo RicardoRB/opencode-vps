@@ -38,6 +38,8 @@ WORKDIR /workspace
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+RUN gh auth setup-git
+
 EXPOSE 4096
 
 ENTRYPOINT ["/entrypoint.sh"]

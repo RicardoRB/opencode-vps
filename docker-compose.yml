@@ -16,7 +16,15 @@ services:
       OPENCODE_SERVER_PASSWORD: ${OPENCODE_SERVER_PASSWORD}
       OPENCODE_SERVER_USERNAME: ${OPENCODE_SERVER_USERNAME}
     restart: unless-stopped
-
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 3G
+        reservations:
+          cpus: "0.5"
+          memory: 1G
+          
 volumes:
   vps-opencode-data:
     driver: local
