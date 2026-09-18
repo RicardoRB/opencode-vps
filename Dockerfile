@@ -27,6 +27,9 @@ RUN curl -fsSL https://bun.sh/install | bash
 
 ENV PATH="/root/.bun/bin:${PATH}"
 
+# Update npm to a current stable version
+RUN npm install -g npm@latest
+
 # OpenCode
 ARG OPENCODE_VERSION=latest
 RUN npm install -g "opencode-ai@${OPENCODE_VERSION}"
