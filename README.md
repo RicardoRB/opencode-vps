@@ -12,6 +12,7 @@ The container starts OpenCode web server on port `4096` using the `entrypoint.sh
 
 - Dockerized OpenCode web interface
 - Installs GitHub CLI (`gh`) for repository workflows
+- Includes OpenSpec CLI from https://openspec.dev/ for spec-driven development workflows
 - Uses Bun for package management and runtime
 - Supports a simple `.env` file for optional GitHub token configuration
 
@@ -46,7 +47,13 @@ docker build -t opencode-vps .
 docker run --rm -p 4096:4096 --env-file .env opencode-vps
 ```
 
-4. Open your browser and navigate to:
+4. Inside the container, OpenSpec is available via the `openspec` command:
+
+```bash
+docker exec -it <container_name> openspec --help
+```
+
+5. Open your browser and navigate to:
 
 ```text
 http://localhost:4096

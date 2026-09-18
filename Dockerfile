@@ -31,6 +31,9 @@ ENV PATH="/root/.bun/bin:${PATH}"
 ARG OPENCODE_VERSION=latest
 RUN npm install -g "opencode-ai@${OPENCODE_VERSION}"
 
+# OpenSpec
+RUN npm install -g @fission-ai/openspec@latest
+
 # Workspace
 WORKDIR /workspace
 
