@@ -23,7 +23,8 @@ RUN mkdir -p -m 755 /etc/apt/keyrings && \
     rm -rf /var/lib/apt/lists/*
 
 # OpenCode
-RUN curl -fsSL https://opencode.ai/v2/install | bash
+ARG OPENCODE_VERSION=2.0.29
+RUN curl -fsSL https://opencode.ai/v2/install | bash -s -- --version "${OPENCODE_VERSION}"
 
 ENV PATH="/root/.opencode/bin:${PATH}"
 
