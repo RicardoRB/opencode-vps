@@ -1,17 +1,12 @@
-version: '3.9'
-
 services:
   opencode:
     build:
       context: .
-      args:
-        OPENCODE_VERSION: ${OPENCODE_VERSION:-latest}
     ports:
       - "4096:4096"
     volumes:
       - vps-opencode-data:/root/.config/opencode
       - vps-opencode-projects:/workspace
-      - vps-opencode-omo:/root/.omo
       - vps-opencode-state:/root/.local/share/opencode
     environment:
       GITHUB_TOKEN: ${GITHUB_TOKEN}
@@ -31,8 +26,6 @@ volumes:
   vps-opencode-data:
     driver: local
   vps-opencode-projects:
-    driver: local
-  vps-opencode-omo:
     driver: local
   vps-opencode-state:
     driver: local

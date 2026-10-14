@@ -1,10 +1,10 @@
 # OpenCode VPS
 
-A lightweight Docker-based environment for running OpenCode AI web interface with Bun and GitHub CLI support.
+A lightweight Docker-based environment for running the OpenCode AI web interface with GitHub CLI support.
 
 ## Overview
 
-This repository builds a container image based on `oven/bun:1`, installs system dependencies and GitHub CLI, then installs `opencode-ai` globally.
+This repository builds a container image based on Node.js, installs system dependencies and GitHub CLI, then installs OpenCode with the official installer.
 
 The container starts OpenCode web server on port `4096` using the `entrypoint.sh` script.
 
@@ -13,12 +13,12 @@ The container starts OpenCode web server on port `4096` using the `entrypoint.sh
 - Dockerized OpenCode web interface
 - Installs GitHub CLI (`gh`) for repository workflows
 - Includes OpenSpec CLI from https://openspec.dev/ for spec-driven development workflows
-- Uses Bun for package management and runtime
+- Installs OpenCode using `https://opencode.ai/v2/install`
 - Supports a simple `.env` file for optional GitHub token configuration
 
 ## Files
 
-- `Dockerfile` - Builds the container image with required packages and installs `opencode-ai`
+- `Dockerfile` - Builds the container image with required packages and installs OpenCode
 - `entrypoint.sh` - Initializes OpenCode config and launches the web server
 - `.env.example` - Example environment variables file
 
@@ -62,11 +62,9 @@ http://localhost:4096
 ## Environment Variables
 
 - `GITHUB_TOKEN` - Optional GitHub personal access token for GitHub CLI or OpenCode operations that require authentication.
-- `OPENCODE_VERSION` - Optional OpenCode AI version to install at build time. Defaults to `latest` when not defined.
 
 ## Notes
 
-- The container installs `oh-my-openagent` only once per persisted configuration using a marker file at `/root/.config/opencode/.omo-installed`.
 - If `GITHUB_TOKEN` is set, the entrypoint configures GitHub CLI as a git credential helper at container startup.
 
 ## Ports
